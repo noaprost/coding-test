@@ -4,21 +4,12 @@
 # 로또 번호 출력 함수
 def lottoPrint(c, num):
     for i1 in range(c):
-        for i2 in range(1, c + 1):
-            for i3 in range(2, c + 2):
-                for i4 in range(3, c + 3):
-                    for i5 in range(4, c + 4):
-                        for i6 in range(5, c + 5):
-                            if i1 < i2 and i2 < i3 and i3 < i4 and i4 < i5 and i5 < i6:
-                                print(
-                                    num[i1],
-                                    num[i2],
-                                    num[i3],
-                                    num[i4],
-                                    num[i5],
-                                    num[i6],
-                                    end=" ",
-                                )
+        for i2 in range(i1 + 1, c + 1):
+            for i3 in range(i2 + 1, c + 2):
+                for i4 in range(i3 + 1, c + 3):
+                    for i5 in range(i4 + 1, c + 4):
+                        for i6 in range(i5 + 1, c + 5):
+                            print(num[i1], num[i2], num[i3], num[i4], num[i5], num[i6])
     print("\n")
 
 

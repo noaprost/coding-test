@@ -15,9 +15,12 @@ for n in num:
     # 차이를 가장 작게 하기위해 n의 절반부터 탐색
     p = int(n / 2)
 
-    # 1씩 빼가면서 합이 되는 두 수가 모두 소수이면 출력하고 종료
+    if p % 2 == 0:
+        p = p - 1
+
+    # 2씩 빼가면서 합이 되는 두 수가 모두 소수이면 출력하고 종료
     while p > 0:
         if isPrime(p) and isPrime(n - p):
             print(p, n - p)
             break
-        p = p - 1
+        p = p - 2

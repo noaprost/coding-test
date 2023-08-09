@@ -10,10 +10,10 @@ n = int(input())
 
 for i in range(n):
     item = int(sys.stdin.readline())
-    if item == 0:
-        if que.empty():
+    if item == 0:  # 입력이 0이면
+        if que.empty():  # 큐가 비어있으면
             print(0)
         else:
-            print(que.get())
+            print(que.get())  # 비어있지 않으면 큐에서 꺼내서 출력
     else:
-        que.put(item)
+        que.put(item)  # 입력이 0이 아니면 큐에 삽입

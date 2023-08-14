@@ -14,6 +14,7 @@ def hanoi(n, start, end, via):
 n = int(input())
 move = []
 hanoi(n, 1, 3, 2)
-print(len(move))
+
+print(len(move))  # 이동 횟수
 for m in move:
-    print(m[0], m[1])
+    print(m[0], m[1])  # 이동 순서

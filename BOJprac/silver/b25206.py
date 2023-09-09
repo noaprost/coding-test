@@ -26,6 +26,7 @@ for _ in range(20):
         num += float(s[1])
     elif s[2] == "D+":
         sum += float(s[1]) * 1.5
+        num += float(s[1])
     elif s[2] == "D0":
         sum += float(s[1]) * 1.0
         num += float(s[1])
@@ -34,4 +35,5 @@ for _ in range(20):
         num += float(s[1])
     elif s[2] == "P":
         continue
+
 print(sum / num)

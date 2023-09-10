@@ -18,4 +18,4 @@ for j in range(9):
         break
 
 print(max(m))
-print(ai, aj)
+print(ai + 1, aj + 1)

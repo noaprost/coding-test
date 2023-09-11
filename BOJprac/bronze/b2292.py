@@ -11,7 +11,6 @@ n = int(sys.stdin.readline())
 
 # 찾아야하는것 어느 범위에 있는지 -> 안쪽으로보터 몇번째 방에 있는지
 
-isFind = False
 curNum = 1
 roomNum = 1
 i = 1

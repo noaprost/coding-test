@@ -5,21 +5,15 @@ import sys
 s = list(sys.stdin.readline().strip())
 t = list(sys.stdin.readline().strip())
 
-t.reverse()
-s.reverse()
-
-while True:
-    if len(t) == 0:
-        exit(print(0))
-
+while len(s) != len(t):
     if t[-1] == "A":
-        t.remove("A")
-    else:
-        t.reverse()
-        if t[-1] == "B":
-            t.remove("B")
-        else:
-            exit(print(0))
+        t.pop()
 
-    if t == s:
-        exit(print(1))
+    elif t[-1] == "B":
+        t.pop()
+        t.reverse()
+
+if t == s:
+    print(1)
+else:
+    print(0)

@@ -1,41 +1,26 @@
 # 신입사원
-# 서류, 면접 각각 1등을 고르고, 나머지 서류 면접 두부분이 모두 높은 사람을 추가로 뽑음
-#
+# 정렬 후 서류 기준으로 1등을 뽑고 1등의 면접 점수보다 높은 사람을 다 뽑음
 import sys
 
 t = int(sys.stdin.readline())
 
 while t != 0:
-    count = 0
+    count = 1
     result = []
-    s = True
+
     n = int(sys.stdin.readline())
-    for i in range(n):
+
+    for _ in range(n):
         doc, itv = map(int, sys.stdin.readline().split())
-        if doc == 1 and itv == 1:
-            count += 1
-            continue
-
-        if doc == 1:
-            count += 1
-            continue
-
-        if itv == 1:
-            count += 1
-            continue
-
         result.append([doc, itv])
 
-    for i in range(n - count):
-        for j in range(n - count):
-            if i != j:
-                if result[i][0] > result[j][0] and result[i][1] > result[j][1]:
-                    s = False
-                    break
-        if s:
-            print(result[i])
+    result.sort()
+
+    itvRank = result[0][1]
+    for i in range(1, n):
+        if result[i][1] < itvRank:
             count += 1
-        s = True
+            itvRank = result[i][1]
 
     print(count)
     t -= 1

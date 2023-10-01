@@ -7,5 +7,6 @@ b = set([sys.stdin.readline().strip() for _ in range(m)])
 
 
 print(len(d.intersection(b)))
-for s in d.intersection(b):
+
+for s in sorted(d.intersection(b)):
     print(s)

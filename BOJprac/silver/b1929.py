@@ -13,13 +13,14 @@ def isPrime(n):
     return True
 
 
-caseNum = int(sys.stdin.readline())
+a, b = map(int, sys.stdin.readline().split())
 
-for _ in range(caseNum):
-    n = int(sys.stdin.readline())
+n = a
 
-    while True: 
+while True:
+    if n >= a and n <= b:
         if isPrime(n):
             print(n)
-            break
-        n += 1
+    else:
+        break
+    n += 1

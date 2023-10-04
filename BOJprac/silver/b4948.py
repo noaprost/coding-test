@@ -1,3 +1,5 @@
+# 제곱근 이용시 시간초과
+# 에라토스테네스의 체 이용
 import sys
 
 n = int(sys.stdin.readline())

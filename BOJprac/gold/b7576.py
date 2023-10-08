@@ -5,8 +5,11 @@ m, n = map(int, sys.stdin.readline().split())
 tomato = [[] for _ in range(n)]
 visited = [[False for _ in range(m)] for _ in range(n)]
 ripeTomatoLoc = []  # 익은 토마토의 위치
-count = [[0 for _ in range(m)] for _ in range(n)]
+count = 0
 que = Queue()
+
+minusCount = 0
+oneCount = 0
 
 for i in range(n):
     k = 0
@@ -15,10 +18,22 @@ for i in range(n):
         if j == "1":
             ripeTomatoLoc.append([i, k])
             visited[i][k] = True
+            oneCount += 1
+        elif j == "-1":
+            visited[i][k] = True
+            minusCount += 1
+
         k += 1
 
+if minusCount + oneCount == m * n:
+    exit(print(0))
+
+tmp = []
 for r in ripeTomatoLoc:
     que.put(r)
+
+while True:
+    tmp = []
 
     while que.qsize() != 0:
         v = que.get()
@@ -27,30 +42,30 @@ for r in ripeTomatoLoc:
         visited[x][y] = True
 
         if x > 0 and not visited[x - 1][y] and tomato[x - 1][y] == "0":
-            que.put([x - 1, y])
+            tmp.append([x - 1, y])
             visited[x - 1][y] = True
-            count[x - 1][y] += count[x][y] + 1
 
         if x < n - 1 and not visited[x + 1][y] and tomato[x + 1][y] == "0":
-            que.put([x + 1, y])
+            tmp.append([x + 1, y])
             visited[x + 1][y] = True
-            count[x + 1][y] += count[x][y] + 1
 
         if y > 0 and not visited[x][y - 1] and tomato[x][y - 1] == "0":
-            que.put([x, y - 1])
+            tmp.append([x, y - 1])
             visited[x][y - 1] = True
-            count[x][y - 1] += count[x][y] + 1
 
         if y < m - 1 and not visited[x][y + 1] and tomato[x][y + 1] == "0":
-            que.put([x, y + 1])
+            tmp.append([x, y + 1])
             visited[x][y + 1] = True
-            count[x][y + 1] += count[x][y] + 1
 
-        if que.qsize() != 0:
-            print(count[x][y])
+    count += 1
 
-for t in tomato:
-    print(t)
+    if len(tmp) == 0:
+        break
+    if len(tmp) != 0:
+        for r in tmp:
+            que.put(r)
+for v in visited:
+    if False in v:
+        exit(print(-1))
 
-for c in count:
-    print(c)
+print(count - 1)

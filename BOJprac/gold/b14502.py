@@ -1,7 +1,6 @@
 import sys
 from queue import Queue
 from itertools import combinations
-import copy
 
 n, m = map(int, sys.stdin.readline().split())
 
@@ -27,9 +26,7 @@ for i in range(n):
             virusLoc.append([i, k])
         k += 1
 
-cc = 0
 for item in list(combinations(zeroLoc, 3)):
-    cc += 1
     # item 한개에 3개의 좌표가 들어옴
     lab[item[0][0]][item[0][1]] = "1"
     lab[item[1][0]][item[1][1]] = "1"
@@ -83,3 +80,4 @@ for item in list(combinations(zeroLoc, 3)):
 
 
 print(max(zeroCount))
+

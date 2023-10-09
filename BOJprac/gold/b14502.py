@@ -78,6 +78,4 @@ for item in list(combinations(zeroLoc, 3)):
                 visited[i][j] = False
     count = 0
 
-
 print(max(zeroCount))
-

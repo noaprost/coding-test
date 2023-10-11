@@ -61,9 +61,11 @@ while True:
 
     if len(tmp) == 0:
         break
+
     if len(tmp) != 0:
-        for r in tmp:
-            que.put(r)
+        for t in tmp:
+            que.put(t)
+
 for v in visited:
     if False in v:
         exit(print(-1))

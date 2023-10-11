@@ -2,10 +2,8 @@
 import sys
 
 cloverNum, commandNum = map(int, sys.stdin.readline().split())
-clover1 = []
-clover2 = []
-clover3 = []
-clover4 = []
+
+clover = [[] for _ in range(200000)]
 
 # 숭이 초기 위치
 sx, sy = 0, 0
@@ -17,14 +15,8 @@ direction = ["R", "D", "L", "U"]
 
 for i in range(cloverNum):
     x, y = map(int, sys.stdin.readline().split())
-    if x >= 0 and y >= 0:
-        clover1.append([x, y])
-    elif x >= 0 and y <= 0:
-        clover2.append([x, y])
-    elif x < 0 and y <= 0:
-        clover3.append([x, y])
-    elif x <= 0 and y >= 0:
-        clover4.append([x, y])
+    clover[x].append(y)
+
 
 command = list(sys.stdin.readline().strip())
 
@@ -36,18 +28,8 @@ for c in command:
         nx = nx + dx[idx]
         ny = ny + dy[idx]
 
-        if nx >= 0 and ny >= 0:
-            if [nx, ny] in clover1:
-                break
-        elif nx >= 0 and ny <= 0:
-            if [nx, ny] in clover2:
-                break
-        elif nx <= 0 and ny <= 0:
-            if [nx, ny] in clover3:
-                break
-        elif nx <= 0 and ny >= 0:
-            if [nx, ny] in clover4:
-                break
+        if ny in clover[nx]:
+            break
 
     sx, sy = nx, ny
 

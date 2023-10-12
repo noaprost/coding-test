@@ -34,3 +34,9 @@ for c in command:
     sx, sy = nx, ny
 
 print(sx, sy)
+
+# cl = [(1, 0), (2, 1), (2, 0)]
+
+# cl.sort()
+
+# print(cl)

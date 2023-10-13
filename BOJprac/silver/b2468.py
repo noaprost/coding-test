@@ -50,7 +50,7 @@ while sa != 0:
                 visited[x - 1][y] = True
 
             if x < n - 1 and not visited[x + 1][y]:
-                que.put([x + 1, y])
+                que.put([x + 1, y])x
                 visited[x + 1][y] = True
 
             if y > 0 and not visited[x][y - 1]:

@@ -1,3 +1,4 @@
+# 수 이어쓰기
 import sys
 
 n = int(sys.stdin.readline())

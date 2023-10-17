@@ -6,9 +6,23 @@ n, len = map(int, sys.stdin.readline().split())
 
 dna = []
 
-diff = [0] * n
+dnaBase = ["A", "C", "G", "T"]
+
+ans = ""
+
+diff = 0
 
 for _ in range(n):
     d = sys.stdin.readline().strip()
 
     dna.append(d)
+
+for i in range(len):
+    dnaDiff = [0, 0, 0, 0]
+    for j in range(n):
+        dnaDiff[dnaBase.index(dna[j][i])] += 1
+    ans += dnaBase[dnaDiff.index(max(dnaDiff))]
+    diff += n - max(dnaDiff)
+
+print(ans)
+print(diff)

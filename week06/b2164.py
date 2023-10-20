@@ -5,7 +5,7 @@ from queue import Queue
 n = int(input())
 que = Queue()
 
-if n == 1:  # 카드가 1장이면
+if n == 1:  # 카드가 1장이면 
     print(1)
 else:
     for i in range(2, n + 1, 2):  # 큐에 짝수만 담음

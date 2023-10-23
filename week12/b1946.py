@@ -1,5 +1,4 @@
 # 신입사원
-# 정렬 후 서류 기준으로 1등을 뽑고 1등의 면접 점수보다 높은 사람을 다 뽑음
 import sys
 
 t = int(sys.stdin.readline())

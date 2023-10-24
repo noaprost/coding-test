@@ -2,8 +2,23 @@
 # X가 2로 나누어 떨어지면, 2로 나눈다.
 # 1을 뺀다.
 
-# 생각난 방법들 : 재귀 -> 생각한대로 안되넹, bfs -> 얘두.. 힝, dp..는 어떻게 하는지 모르겠구
-
 import sys
 
 n = int(sys.stdin.readline())
+
+dp = [0, 0, 1, 1]
+
+if n >= 4:
+    for i in range(4, n + 1):
+        val1 = dp[i - 1] + 1
+        val2 = dp[i - 1] + 1
+        val3 = dp[i - 1] + 1
+
+        if i % 3 == 0:
+            val1 = dp[i // 3] + 1
+        if i % 2 == 0:
+            val2 = dp[i // 2] + 1
+
+        dp.append(min(val1, val2, val3))
+
+print(dp[n])

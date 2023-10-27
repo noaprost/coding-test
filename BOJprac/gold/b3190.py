@@ -28,13 +28,18 @@ for _ in range(l):
     val, rotate = sys.stdin.readline().split()
     command.append([val, rotate])
 
+command.append([10001, command[l - 1][1]])
 
 for c in command:
     val, rotate = c[0], c[1]
     while i < int(val):
+        for m in maps:
+            print(m)
+        print()
         x = d[0][0]
         y = d[0][1]
         if snakeDirec == "R":
+            i += 1
             if y > n - 1:  # 경계를 벗어날 경우
                 exit(print(i))
             elif maps[x][y + 1] == 1:  # 자기 몸에 닿은 경우
@@ -48,9 +53,9 @@ for c in command:
                     maps[x][y + 1] = 1
                     v = d.pop()
                     maps[v[0]][v[1]] = 0
-                i += 1
 
         elif snakeDirec == "B":
+            i += 1
             if x + 1 > n - 1:  # 경계를 벗어날 경우
                 exit(print(i))
             elif maps[x + 1][y] == 1:  # 자기 몸에 닿은 경우
@@ -64,9 +69,9 @@ for c in command:
                     maps[x + 1][y] = 1
                     v = d.pop()
                     maps[v[0]][v[1]] = 0
-                i += 1
 
         elif snakeDirec == "L":
+            i += 1
             if y < 0:  # 경계를 벗어날 경우
                 exit(print(i))
             elif maps[x][y - 1] == 1:  # 자기 몸에 닿은 경우
@@ -80,14 +85,12 @@ for c in command:
                     maps[x][y - 1] = 1
                     v = d.pop()
                     maps[v[0]][v[1]] = 0
-                i += 1
 
         elif snakeDirec == "T":
+            i += 1
             if x < 0:  # 경계를 벗어날 경우
-                print("경계 아웃")
                 exit(print(i))
             elif maps[x - 1][y] == 1:  # 자기 몸에 닿은 경우
-                print("몸에 닿음")
                 exit(print(i))
             else:  # 경계에 닿지 않은 경우
                 if maps[x - 1][y] == 4:
@@ -98,7 +101,7 @@ for c in command:
                     maps[x - 1][y] = 1
                     v = d.pop()
                     maps[v[0]][v[1]] = 0
-                i += 1
+
     if rotate == "D":
         snakeDirec = directions[(directions.index(snakeDirec) + 1) % 4]
     elif rotate == "L":
@@ -107,7 +110,4 @@ for c in command:
             snakeDirec = directions[3]
         else:
             snakeDirec = directions[didx - 1]
-
-for m in maps:
-    print(m)
 print(i)

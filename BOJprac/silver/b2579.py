@@ -1,29 +1,23 @@
 # 계단 오르기
-# 이것이 바로 나의 첫 knapsack..?
 import sys
 
 n = int(sys.stdin.readline())
-stairs = []
+stairs = [0]
 for _ in range(n):
     s = int(sys.stdin.readline())
     stairs.append(s)
 
-score = 0
-threeCnt = 0
-idx = -1
-while idx < n - 2:
-    if threeCnt == 3:
-        idx += 1
-        threeCnt = 1
-        continue
+if n == 1:
+    exit(print(stairs[1]))
 
-    if stairs[idx + 1] > stairs[idx + 2]:
-        score += stairs[idx + 1]
-        threeCnt += 1
-        idx += 1
-    else:
-        score += stairs[idx + 2]
-        threeCnt = 1
-        idx += 2
+dp = [[], [stairs[1], 0], [stairs[2], stairs[1] + stairs[2]]]
 
-print(score)
+for i in range(3, n + 1):
+    dp.append(
+        [
+            max(dp[i - 2][0], dp[i - 2][1]) + stairs[i],
+            dp[i - 1][0] + stairs[i],
+        ]
+    )
+
+print(max(dp[n][0], dp[n][1]))

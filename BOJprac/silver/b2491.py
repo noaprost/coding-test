@@ -26,5 +26,3 @@ for i in range(n):
         else:
             dp2.append(1)
 print(max(max(dp1), max(dp2)))
-
-# 아 연속으로 작아지는것도 쳐야되는구나

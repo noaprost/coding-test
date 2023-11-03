@@ -9,7 +9,8 @@ import sys
 n = int(sys.stdin.readline())
 
 nums = [int(sys.stdin.readline()) for _ in range(n)]
-count = []
+count = [0] * (8002)
+mode = []
 
 # 산술평균
 print(round(sum(nums) / n))
@@ -19,7 +20,19 @@ nums.sort()
 print(nums[int(n / 2)])
 
 # 최빈값 : 여러개일때는 두번째로 작은 값 출력
-
+for num in nums:
+    count[num] += 1
+m = max(count)
+for num in nums:
+    if count[num] == m:
+        mode.append(num)
+mode = set(mode)
+mode = list(mode)
+mode.sort()
+if len(mode) == 1:
+    print(mode[0])
+else:
+    print(mode[1])
 
 # 범위
 print(max(nums) - min(nums))

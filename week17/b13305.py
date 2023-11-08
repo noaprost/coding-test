@@ -13,8 +13,6 @@ money = 0
 for i in range(cityNum - 1):
     if minPrice > oilPrice[i]:
         minPrice = oilPrice[i]
-        money += road[i] * minPrice
-    else:
-        money += road[i] * minPrice
+    money += road[i] * minPrice
 
 print(money)

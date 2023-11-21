@@ -17,7 +17,7 @@ for i in range(n):
             tmp += 1
         else:
             ans.append(tmp)
-            tmp = 1
+            tmp = 0
 
 ans.append(tmp)
 sum = 0

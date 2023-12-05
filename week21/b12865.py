@@ -6,7 +6,7 @@ import sys
 n, totalWeight = map(int, sys.stdin.readline().split())
 
 bag = [0] * (totalWeight + 1)
-
+ 
 for _ in range(n):  # 모든 보석을 한번씩 검사
     w, v = map(int, sys.stdin.readline().split())  # weight, value
     if w > totalWeight:

@@ -11,9 +11,9 @@ for _ in range(n):
     k, s = map(int, sys.stdin.readline().split())
     if k > time:
         continue
-    for j in range(time, 0, -1):
+    for j in range(time,0,-1):
         if k + j <= time and study[j] != 0:
-            study[k + j] = max(study[k + j], study[j] + s)
+            study[k + j] = max(study[k+j], study[j]+s)
     study[k] = max(study[k], s)
 
 print(max(study))

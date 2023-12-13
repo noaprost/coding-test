@@ -1,4 +1,4 @@
-# 쇠막대기
+# 10799
 import sys
 
 stack = []
@@ -13,12 +13,14 @@ tmp = 0
 
 while i < len(bracket):
     if bracket[i] == "(" and bracket[i + 1] == ")":
-        count += tmp
         i += 1
-    elif bracket[i] == "(":
+        continue
+    elif bracket[i] == "(" and bracket[i + 1] == "(":
         tmp += 1
-    elif bracket[i] == ")":
+        count += 1
+    elif bracket[i] == ")" and bracket[i - 1] == "(":
         count += tmp
+    elif bracket[i] == ")" and bracket[i - 1] == ")":
         tmp -= 1
     i += 1
 

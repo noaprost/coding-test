@@ -6,25 +6,22 @@ n = int(sys.stdin.readline())
 nums = list(sys.stdin.readline().split())
 
 stack = []
-for i in range(n - 1, 0, -1):
-    stack.append(nums[i])
-
-tmp = []
+nums.reverse()
 ans = []
-i = 0
 
-while i < n and len(ans) != n:
-    while len(stack) > 0 and stack[-1] <= nums[i]:
-        tmp.append(stack.pop())
-
-    if len(stack) == 0:
-        ans.append(-1)
+while len(nums) != 0:
+    v = nums.pop()
+    if nums[-1] <= v:
+        while nums[-1] < v:
+            stack.append(nums.pop())
+        ans.append(nums[-1])
     else:
-        ans.append(stack.pop())
+        ans.append(nums[-1])
 
-    i += 1
+    if len(stack) != 0:
+        for s in stack:
+            nums.append(s)
 
-    while len(tmp) != 0:
-        stack.append(tmp.pop())
+ans.append(-1)
 
 print(*ans)

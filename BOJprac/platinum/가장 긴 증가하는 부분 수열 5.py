@@ -1,4 +1,4 @@
-# 가장 긴 증가하는 부분 수열5
+# 14003
 from bisect import bisect_left
 import sys
 

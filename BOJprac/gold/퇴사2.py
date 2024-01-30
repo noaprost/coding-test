@@ -1,4 +1,4 @@
-# 퇴사 2
+# 15486
 import sys
 
 n = int(sys.stdin.readline())

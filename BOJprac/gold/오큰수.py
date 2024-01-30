@@ -1,4 +1,4 @@
-# 오큰수
+# 17298
 import sys
 import heapq
 

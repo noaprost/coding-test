@@ -1,4 +1,4 @@
-# 같은 나머지
+# 1684
 import sys
 from math import gcd
 

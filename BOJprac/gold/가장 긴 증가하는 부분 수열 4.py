@@ -1,4 +1,4 @@
-# 가장 긴 증가하는 부분 수열4
+# 14002
 import sys
 
 n = int(sys.stdin.readline())

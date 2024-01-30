@@ -1,4 +1,4 @@
-# 크게 만들기
+# 2812
 import sys
 
 d, count = map(int, sys.stdin.readline().split())

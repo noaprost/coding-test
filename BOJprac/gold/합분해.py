@@ -1,4 +1,4 @@
-# 합분해
+# 2225
 import sys
 
 n, k = map(int, sys.stdin.readline().split())

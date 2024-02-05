@@ -7,4 +7,3 @@ maps = []
 
 for _ in range(m):
     maps.append(list(map(int, sys.stdin.readline().split())))
-

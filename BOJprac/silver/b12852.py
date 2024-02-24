@@ -1,25 +1,46 @@
 # 1로 만들기 2
-# X가 3으로 나누어 떨어지면, 3으로 나눈다.
-# X가 2로 나누어 떨어지면, 2로 나눈다.
-# 1을 뺀다.
-
 import sys
+from queue import Queue
 
 n = int(sys.stdin.readline())
 
-dp = [0, 0, 1, 1]
+# 그래프 탐색 시작 (BFS 이용)
+que = Queue()
+visited = [False] * (n + 1)
+distCheck = [0] * (n + 1)
 
-if n >= 4:
-    for i in range(4, n + 1):
-        val1 = dp[i - 1] + 1
-        val2 = dp[i - 1] + 1
-        val3 = dp[i - 1] + 1
+que.put([n, 0])
 
-        if i % 3 == 0:
-            val1 = dp[i // 3] + 1
-        if i % 2 == 0:
-            val2 = dp[i // 2] + 1
+dist = 0
 
-        dp.append(min(val1, val2, val3))
+while que.qsize() != 0:
+    v = que.get()
 
-print(dp[n])
+    if v[0] == 1:
+        dist = v[1]
+        break
+
+    if v[0] % 3 == 0 and not visited[v[0] // 3]:
+        que.put([v[0] // 3, v[1] + 1])
+        visited[v[0] // 3] = True
+        distCheck[v[0] // 3] = v[0]
+
+    if v[0] % 2 == 0 and not visited[v[0] // 2]:
+        que.put([v[0] // 2, v[1] + 1])
+        visited[v[0] // 2] = True
+        distCheck[v[0] // 2] = v[0]
+
+    if not visited[v[0] - 1]:
+        que.put([v[0] - 1, v[1] + 1])
+        visited[v[0] - 1] = True
+        distCheck[v[0] - 1] = v[0]
+
+print(dist)
+ans = [1]
+tmp = 1
+for _ in range(dist):
+    ans.append(distCheck[tmp])
+    tmp = distCheck[tmp]
+
+for i in range(len(ans) - 1, -1, -1):
+    print(ans[i], end=" ")

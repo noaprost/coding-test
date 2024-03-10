@@ -1,26 +1,19 @@
 # 1038
 import sys
+from itertools import combinations
 
 target = int(sys.stdin.readline())
-n = 0
-count = -1
 
-if target <= 10:
-    exit(print(target))
+dec = []
 
-while n <= 9876543210:
-    sn = str(n)
-    isDec = True
-    for i in range(len(sn) - 1):
-        if int(sn[i]) <= int(sn[i + 1]):
-            isDec = False
-            break
-    if isDec:
-        count += 1
+# 조합을 뒤집으면 항상 감소하는 수
+for i in range(1, 11):
+    for j in combinations(range(10), i):
+        num = "".join(list(map(str, reversed(list(j)))))
+        dec.append(int(num))
 
-    if count == target:
-        exit(print(int(n)))
-
-    n = int(n) + 1
-
-print(-1)
+dec.sort()
+if target >= len(dec):
+    print(-1)
+else:
+    print(dec[target])

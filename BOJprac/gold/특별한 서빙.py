@@ -1,19 +1,22 @@
 # 27896
 import sys
+from queue import PriorityQueue
 
-n, m = map(int, sys.stdin.readline().split())
+n, angry = map(int, sys.stdin.readline().split())
 
 student = list(map(int, sys.stdin.readline().split()))
 
+que = PriorityQueue()
+
+sum = 0
 gaji = 0
 
-gauge = 0
-
-for s in student:
-    if (gauge + s) < m:
-        gauge += s
-    else:
-        gauge -= s
+for i in range(n):
+    sum += student[i]
+    que.put(-student[i])
+    if sum >= angry:
+        tmp = que.get()
+        sum += tmp * 2
         gaji += 1
 
 print(gaji)

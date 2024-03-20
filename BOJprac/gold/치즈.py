@@ -3,24 +3,17 @@ import sys
 from queue import Queue
 
 n, m = map(int, sys.stdin.readline().split())
-cheese = [list(map(int, sys.stdin.readline().rstrip().split())) for _ in range(n)]
+cheese = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 visited = [[False for _ in range(m)] for _ in range(n)]
 que = Queue()
 fade = []
 hours = 0
-
-
-def isVisit(visited):
-    for v in visited:
-        if False in v:
-            return False
-    return True
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
 
 
 def countOutsideAir(x, y):
     count = 0
-    dx = [0, 0, 1, -1]
-    dy = [1, -1, 0, 0]
 
     for i in range(4):
         nx = x + dx[i]
@@ -39,16 +32,11 @@ def markToOutsideAir():
     tmp_visted = [[False for _ in range(m)] for _ in range(n)]
 
     while tmp_que.qsize() != 0:
-        v = tmp_que.get()
-        x = v[0]
-        y = v[1]
+        x, y = tmp_que.get()
         tmp_visted[x][y] = True
 
         if cheese[x][y] != 1:
             cheese[x][y] = 2
-
-        dx = [0, 0, 1, -1]
-        dy = [1, -1, 0, 0]
 
         for i in range(4):
             nx = x + dx[i]
@@ -67,16 +55,9 @@ que.put([0, 0])
 
 while True:
     fade = []
-    markToOutsideAir()
-
     while que.qsize() != 0:
-        v = que.get()
-        x = v[0]
-        y = v[1]
+        x, y = que.get()
         visited[x][y] = True
-
-        dx = [0, 0, 1, -1]
-        dy = [1, -1, 0, 0]
 
         for i in range(4):
             nx = x + dx[i]
@@ -95,11 +76,11 @@ while True:
             que.put(f)
             cheese[f[0]][f[1]] = 2
         hours += 1
+        markToOutsideAir()
+    else:
+        exit(print(hours))
 
     for i in range(n):
         for j in range(m):
             if cheese[i][j] == 1:
                 visited[i][j] = False
-
-    if isVisit(visited):
-        exit(print(hours))

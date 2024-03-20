@@ -14,11 +14,11 @@ for i in range(n - 1):
     for j in range(n - 1):
         if maps[i][j] == maps[i][j + 1]:
             Lcount += 1
-        # 현재 높이가 다음 길의 높이보다 높다면 1.높이 검사 2.뒤로 L만큼의 평지가 유지되는가
+        # 현재 높이가 다음 길의 높이보다 높다면 1.높이 검사 2.뒤로 L만큼의 평지가 유지되는가 -> for문으로 검사하지 않고 flag를 세워야되나
         if maps[i][j] > maps[i][j + 1]:
             if maps[i][j] - maps[i][j + 1] != 1:
                 break
-            
+
             for k in range(1, L + 1):
                 if maps[i][j + 1] != maps[i][j + k]:
                     break

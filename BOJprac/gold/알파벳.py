@@ -1,44 +1,31 @@
 # 1987
 import sys
-from queue import Queue
 
-h, w = map(int, sys.stdin.readline().split())
+sys.setrecursionlimit(10**5)
 
-maps = [list(sys.stdin.readline().rstrip()) for _ in range(h)]
-visited = [[False for _ in range(w)] for _ in range(h)]
+n, m = map(int, sys.stdin.readline().split())
 
-alph = []
+maps = [list(sys.stdin.readline().rstrip()) for _ in range(n)]
+visited = [False for _ in range(26)]
 
-stack = []
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
 
-stack.append([0, 0])
+distance = []
 
-distance = 0
 
-while len(stack) != 0:
-    v = stack.pop()
-    x = v[0]
-    y = v[1]
-    if maps[y][x] not in alph:
-        visited[y][x] = True
-        alph.append(maps[y][x])
-    else:
-        continue
+def dfs(x, y, dist):
+    distance.append(dist)
 
-    if y > 0 and not visited[y - 1][x] and (maps[y - 1][x] not in alph):
-        stack.append([x, y - 1])
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
 
-    if y < h - 1 and not visited[y + 1][x] and (maps[y + 1][x] not in alph):
-        stack.append([x, y + 1])
+        if 0 <= nx < n and 0 <= ny < m and not visited[ord(maps[nx][ny]) - 65]:
+            visited[ord(maps[nx][ny]) - 65] = True
+            dfs(nx, ny, dist + 1)
+            visited[ord(maps[nx][ny]) - 65] = False
 
-    if x < w - 1 and not visited[y][x + 1] and (maps[y][x + 1] not in alph):
-        stack.append([x + 1, y])
 
-    if x > 0 and not visited[y][x - 1] and (maps[y][x - 1] not in alph):
-        stack.append([x - 1, y])
-
-    distance += 1
-
-for v in visited:
-    print(v)
-print(distance)
+visited[ord(maps[0][0]) - 65] = True
+dfs(0, 0, 1)
+print(max(distance))

@@ -3,15 +3,15 @@
 
 import sys
 
-nn, kk = map(int, sys.stdin.readline().split())
+baseN, baseK = map(int, sys.stdin.readline().split())
 
 num = [int(sys.stdin.readline()) for _ in range(nn)]
 
-total = [0] * kk
+total = [0] * baseK
 i = 0
 
-for n in range(nn):
-    for k in range(kk):
+for n in range(baseN):
+    for k in range(baseK):
         if n == 0:  # 초기화
             # 사용할 수 있는 동전의 개수가 1개 이므로
             if (k + 1) % num[n] == 0:  # 나누어떨어지면 경우의 수 1 추가

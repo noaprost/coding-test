@@ -1,76 +1,46 @@
 # 7569
 import sys
-from queue import Queue
+from collections import deque
 
-m, n, h = map(int, sys.stdin.readline().split())
-
+c, b, a = map(int, sys.stdin.readline().split())
 tomato = []
-visited = [[False for _ in range(m)] for _ in range(n * h)]
+for _ in range(a):
+    tmp = []
+    for _ in range(b):
+        tmp.append(list(map(int, sys.stdin.readline().split())))
+    tomato.append(tmp)
 
-for i in range(n * h):
-    tomato.append(list(map(int, sys.stdin.readline().split())))
+dx = [1, -1, 0, 0, 0, 0]
+dy = [0, 0, 1, -1, 0, 0]
+dz = [0, 0, 0, 0, 1, -1]
+que = deque()
+day = 0
 
-x, y = 0, 0
-que = Queue()
-count = 0
+for i in range(a):
+    for j in range(b):
+        for k in range(c):
+            if tomato[i][j][k] == 1:
+                que.append(((i, j, k), 0))
 
-for r in range(n * h):
-    if 1 in tomato[r]:
-        c = tomato[r].index(1)
-        x, y = r, c
-        que.put([x, y])
-        visited[x][y] = True
+while que:
+    v = que.popleft()
+    x, y, z = v[0][0], v[0][1], v[0][2]
+    d = v[1]
+    isRipe = False
+    for i in range(6):
+        nx, ny, nz = x + dx[i], y + dy[i], z + dz[i]
 
-while que.qsize() != 0:
-    v = que.get()
-    x = v[0]
-    y = v[1]
-    count += 1
+        if 0 <= nx < a and 0 <= ny < b and 0 <= nz < c and tomato[nx][ny][nz] == 0:
+            que.append(((nx, ny, nz), d + 1))
+            tomato[nx][ny][nz] = 1
+            isRipe = True
 
-    # 상하좌우앞뒤를 인접노드로 넣어줌
+    if isRipe and day < d + 1:
+        day = d + 1
 
-    # 상
-    if x > 0 and not visited[x - 1][y] and tomato[x - 1][y] == 0:
-        tomato[x - 1][y] = 1
-        que.put([x - 1, y])
-        visited[x - 1][y] = True
+for i in range(a):
+    for j in range(b):
+        if 0 in tomato[i][j]:
+            exit(print(-1))
 
-    # 하
-    if x < n * h - 1 and not visited[x + 1][y] and tomato[x + 1][y] == 0:
-        tomato[x + 1][y] = 1
-        que.put([x + 1, y])
-        visited[x + 1][y] = True
-
-    # 좌
-    if y > 0 and not visited[x][y - 1] and tomato[x][y - 1] == 0:
-        tomato[x][y - 1] = 1
-        que.put([x, y - 1])
-        visited[x][y - 1] = True
-
-    # 우
-    if y < m - 1 and not visited[x][y + 1] and tomato[x][y + 1] == 0:
-        tomato[x][y + 1] = 1
-        que.put([x, y + 1])
-        visited[x][y + 1] = True
-
-    # 앞
-    if x + h < n * h and not visited[x + h][y] and tomato[x + h][y] == 0:
-        tomato[x + h][y] = 1
-        que.put([x + h, y])
-        visited[x + h][y] = True
-
-    # 뒤
-    if x - h >= 0 and not visited[x - h][y] and tomato[x - h][y] == 0:
-        tomato[x - h][y] = 1
-        que.put([x - h, y])
-        visited[x - h][y] = True
-
-    for t in tomato:
-        print(t)
-
-    for v in visited:
-        print(v)
-
-
-# print(x, y)
-print(count)
+print(day)

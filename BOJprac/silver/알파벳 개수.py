@@ -1,4 +1,3 @@
-# 알파벳 개수
 import sys
 
 s = sys.stdin.readline().rstrip()

@@ -1,4 +1,3 @@
-# 결혼삭
 import sys
 from queue import Queue
 

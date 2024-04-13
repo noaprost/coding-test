@@ -1,4 +1,4 @@
-# 가장 긴 감소하는 부분 수열
+# 11722
 import sys
 from bisect import bisect_left
 

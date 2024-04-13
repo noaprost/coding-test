@@ -8,7 +8,7 @@ maps = []
 for _ in range(m):
     maps.append(list(map(int, sys.stdin.readline().split())))
 
-visited = [[False] * n] * m
+visited = [[False for _ in range(n)] for _ in range(m)]
 
 dx = [0, 0, 1, -1]
 dy = [1, -1, 0, 0]

@@ -1,4 +1,3 @@
-# 부분 수열의 합
 from itertools import combinations
 import sys
 

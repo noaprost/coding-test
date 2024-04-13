@@ -1,4 +1,3 @@
-# 다리 놓기
 import sys
 import math
 

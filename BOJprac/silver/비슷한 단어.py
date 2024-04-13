@@ -1,4 +1,3 @@
-# 비슷한 단어
 import sys
 
 n = int(sys.stdin.readline())

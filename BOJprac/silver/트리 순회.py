@@ -1,4 +1,3 @@
-# 트리 순회
 import sys
 
 n = int(sys.stdin.readline())

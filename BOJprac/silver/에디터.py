@@ -1,4 +1,3 @@
-# 에디터
 import sys
 
 stackLeft = []

@@ -1,4 +1,3 @@
-# 제곱수의 합
 import sys
 
 n = int(sys.stdin.readline())

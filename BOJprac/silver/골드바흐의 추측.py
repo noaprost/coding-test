@@ -1,4 +1,3 @@
-# 골드바흐의 추측
 import sys
 
 eratos = [False, False] + [True for _ in range(2, 1000001)]

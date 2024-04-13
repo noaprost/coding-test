@@ -1,4 +1,3 @@
-# 방 번호
 import sys
 import math
 

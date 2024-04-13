@@ -1,4 +1,3 @@
-# 하노이 탑
 import sys
 
 

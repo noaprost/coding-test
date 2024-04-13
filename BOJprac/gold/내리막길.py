@@ -8,16 +8,34 @@ maps = []
 for _ in range(m):
     maps.append(list(map(int, sys.stdin.readline().split())))
 
-# 주변에 있는 애들을 어떻게 넣지
+visited = [[False] * n] * m
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+ans = 0
 
 
-def dfs(graph, node, visited):
+def dfs(node, visited):
+    global ans
+    x, y = node[0], node[1]
 
-    for i in graph:
-        visited[i] = True
-        dfs(graph, i, visited)
-        visited[i] = False
+    if x == m - 1 and y == n - 1:
+        ans += 1
+        return
+
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+
+        if (
+            0 <= nx < m
+            and 0 <= ny < n
+            and not visited[nx][ny]
+            and maps[x][y] > maps[nx][ny]
+        ):
+            visited[nx][ny] = True
+            dfs([nx, ny], visited)
+            visited[nx][ny] = False
 
 
-# dfs
-# 방문하고나서 방문처리를 풀어줘야 모든 경로를 찾을 수 있음
+dfs([0, 0], visited)
+print(ans)

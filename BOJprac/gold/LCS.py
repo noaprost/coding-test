@@ -25,8 +25,7 @@ for i in range(1, l1+1):
             LCS[i][j] = LCS[i - 1][j - 1] + 1
         else:
             LCS[i][j] = max(LCS[i - 1][j], LCS[i][j - 1])
-# for l in LCS:
-#     print(l)
+
 print(LCS[l1][l2])
 
 # result = []

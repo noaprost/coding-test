@@ -14,6 +14,7 @@ def prec(ch):
 expr = sys.stdin.readline().rstrip()
 stack = []
 i = 0
+
 while i < len(expr):
     ch = expr[i]
     if ch == "+" or ch == "-" or ch == "*" or ch == "/":

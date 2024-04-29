@@ -25,4 +25,3 @@ while heap:
             heapq.heappush(heap, edge)
 
 print(totalWeight)
-

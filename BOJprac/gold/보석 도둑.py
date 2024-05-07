@@ -1,36 +1,30 @@
 # 1202
 import sys
-from queue import PriorityQueue
+import heapq
 
 n, k = map(int, sys.stdin.readline().split())
 ju = []
 bag = []
-visited = [False for _ in range(k)]
 
 for _ in range(n):
     m, v = map(int, sys.stdin.readline().split())
-
-    ju.append([-v, m])
-
-ju.sort()
+    ju.append((m, v))
 
 for _ in range(k):
     b = int(sys.stdin.readline())
     bag.append(b)
 
 bag.sort()
+ju.sort()
 
 ans = 0
+heap = []
 
-i = 0
-while i < n:
-    w = ju[i]
-    v, m = w[0], w[1]
-    for j in range(k):
-        if not visited[j] and bag[j] >= m:
-            ans -= v
-            visited[j] = True
-            break
-    i += 1
+for b in bag:
+    while ju and ju[0][0] <= b:
+        heapq.heappush(heap, -ju[0][1])
+        heapq.heappop(ju)
+    if heap:
+        ans -= heapq.heappop(heap)
 
 print(ans)

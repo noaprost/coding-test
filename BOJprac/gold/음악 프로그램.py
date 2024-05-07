@@ -1,4 +1,5 @@
-# import sys
+# 2623
+import sys
 from collections import deque
 
 input = sys.stdin.readline
@@ -23,7 +24,6 @@ for i in range(1, len(degree)):
 
 while dq:
     v= dq.popleft()
-
     for g in graph[v]:
         degree[g] -= 1
         if(degree[g] == 0):

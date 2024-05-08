@@ -1,33 +1,35 @@
-import sys
-from queue import Queue
+# 틀린 문제
 
-p = int(sys.stdin.readline())
+# import sys
+# from queue import Queue
 
-s, e = map(int, sys.stdin.readline().split())
+# p = int(sys.stdin.readline())
 
-edgeNum = int(sys.stdin.readline())
+# s, e = map(int, sys.stdin.readline().split())
 
-graph = [[] + [] for _ in range(p + 1)]
+# edgeNum = int(sys.stdin.readline())
 
-for _ in range(edgeNum):
-    a, b = map(int, sys.stdin.readline().split())
-    graph[a].append(b)
-    graph[b].append(a)
+# graph = [[] + [] for _ in range(p + 1)]
 
-que = Queue()
-que.put(s)
-visited = [False + False for _ in range(p + 1)]
-count = 0
+# for _ in range(edgeNum):
+#     a, b = map(int, sys.stdin.readline().split())
+#     graph[a].append(b)
+#     graph[b].append(a)
 
-while que.qsize() != 0:
-    node = que.get()
-    visited[node] = True
+# que = Queue()
+# que.put(s)
+# visited = [False + False for _ in range(p + 1)]
+# count = 0
 
-    if e in graph[node]:
-        exit(print(count))
+# while que.qsize() != 0:
+#     node = que.get()
+#     visited[node] = True
 
-    for i in graph[node]:
-        if not visited[i]:
-            count += 1
-            que.put(i)
-print(-1)
+#     if e in graph[node]:
+#         exit(print(count))
+
+#     for i in graph[node]:
+#         if not visited[i]:
+#             count += 1
+#             que.put(i)
+# print(-1)

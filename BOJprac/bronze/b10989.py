@@ -1,24 +1,26 @@
-import sys
+# 메모리 초과
 
-n = int(sys.stdin.readline())
-arr = [int(sys.stdin.readline()) for _ in range(n)]
+# import sys
 
-count_dict = {}
+# n = int(sys.stdin.readline())
+# arr = [int(sys.stdin.readline()) for _ in range(n)]
 
-for num in arr:
-    if num in count_dict:
-        count_dict[num] += 1
+# count_dict = {}
 
-    else:
-        count_dict[num] = 1
+# for num in arr:
+#     if num in count_dict:
+#         count_dict[num] += 1
 
-result = []
+#     else:
+#         count_dict[num] = 1
 
-for num in range(max(arr) + 1):
-    while num in count_dict and count_dict[num] != 0:
-        result.append(num)
-        count_dict[num] -= 1
+# result = []
+
+# for num in range(max(arr) + 1):
+#     while num in count_dict and count_dict[num] != 0:
+#         result.append(num)
+#         count_dict[num] -= 1
 
 
-for r in result:
-    print(r)
+# for r in result:
+#     print(r)

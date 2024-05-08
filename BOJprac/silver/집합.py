@@ -5,39 +5,43 @@
 # all: S를 {1, 2, ..., 20} 으로 바꾼다.
 # empty: S를 공집합으로 바꾼다.
 
-import sys
 
-commandNum = int(sys.stdin.readline())
+# 틀린 문제
 
-s = set()
 
-for _ in range(commandNum):
-    command = sys.stdin.readline().strip()
+# import sys
 
-    if command[:3] == "add":
-        c, v = command.split()
-        if int(v) not in s:
-            s.add(int(v))
+# commandNum = int(sys.stdin.readline())
 
-    if command[:3] == "rem":
-        c, v = command.split()
-        if int(v) in s:
-            s.remove(int(v))
+# s = set()
 
-    if command[:3] == "che":
-        c, v = command.split()
-        if int(v) in s:
-            print(1)
-        else:
-            print(0)
-    if command[:3] == "tog":
-        if int(v) in s:
-            s.remove(int(v))
-        else:
-            s.add(int(v))
+# for _ in range(commandNum):
+#     command = sys.stdin.readline().strip()
 
-    if command[:3] == "all":
-        s = set([i for i in range(1, 21)])
+#     if command == "add":
+#         c, v = command.split()
+#         if int(v) not in s:
+#             s.add(int(v))
 
-    if command[:3] == "emp":
-        s = set([])
+#     if command == "remove":
+#         c, v = command.split()
+#         if int(v) in s:
+#             s.remove(int(v))
+
+#     if command == "check":
+#         c, v = command.split()
+#         if int(v) in s:
+#             print(1)
+#         else:
+#             print(0)
+#     if command == "toggle":
+#         if int(v) in s:
+#             s.remove(int(v))
+#         else:
+#             s.add(int(v))
+
+#     if command == "all":
+#         s = set([i for i in range(1, 21)])
+
+#     if command == "empty":
+#         s = set([])

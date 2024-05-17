@@ -1,5 +1,3 @@
-# 회의실
-# 데이터를 어떻게 저장할것인가
 import sys
 
 n = int(sys.stdin.readline())

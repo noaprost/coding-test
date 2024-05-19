@@ -1,11 +1,10 @@
 # 동전 1
-# 오케 3일만에 규칙을 알아냈다. 나이스
 
 import sys
 
 baseN, baseK = map(int, sys.stdin.readline().split())
 
-num = [int(sys.stdin.readline()) for _ in range(nn)]
+num = [int(sys.stdin.readline()) for _ in range(baseN)]
 
 total = [0] * baseK
 i = 0
@@ -25,7 +24,7 @@ for n in range(baseN):
 
             # 동전 가치와 같은 수는 동전 1개로 표현할 수 있으므로
             elif (k + 1) == num[n]:
-                total[k] = total[k] + 1  # 경우의 수 0을 더해줌
+                total[k] = total[k] + 1  # 경우의 수 1을 더해줌
 
             # 동전 가치보다 큰 수의 경우, 이전 동전들로 만들 수 있는 경우의 수가 반복되므로
             elif (k + 1) > num[n]:
@@ -33,4 +32,4 @@ for n in range(baseN):
                 i = i + 1
     i = 0
 
-print(total[-1])
+print(total)

@@ -63,7 +63,7 @@ while True:
             nx = x + dx[i]
             ny = y + dy[i]
 
-            if 0 <= nx < n and 0 <= y < m - 1 and not visited[nx][ny]:
+            if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny]:
                 if cheese[nx][ny] == 1 and countOutsideAir(nx, ny) > 1:
                     fade.append([nx, ny])
                     visited[nx][ny] = True

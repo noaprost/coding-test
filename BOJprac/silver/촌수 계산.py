@@ -1,35 +1,32 @@
-# 틀린 문제
+import sys
 
-# import sys
-# from queue import Queue
 
-# p = int(sys.stdin.readline())
+def dfs(node, visited, cost):
+    visited[node] = True
 
-# s, e = map(int, sys.stdin.readline().split())
+    if node == e:
+        exit(print(cost))
 
-# edgeNum = int(sys.stdin.readline())
+    for g in graph[node]:
+        if not visited[g]:
+            dfs(g, visited, cost + 1)
 
-# graph = [[] + [] for _ in range(p + 1)]
 
-# for _ in range(edgeNum):
-#     a, b = map(int, sys.stdin.readline().split())
-#     graph[a].append(b)
-#     graph[b].append(a)
+p = int(sys.stdin.readline())
 
-# que = Queue()
-# que.put(s)
-# visited = [False + False for _ in range(p + 1)]
-# count = 0
+s, e = map(int, sys.stdin.readline().split())
 
-# while que.qsize() != 0:
-#     node = que.get()
-#     visited[node] = True
+edgeNum = int(sys.stdin.readline())
 
-#     if e in graph[node]:
-#         exit(print(count))
+graph = [[] for _ in range(p + 1)]
 
-#     for i in graph[node]:
-#         if not visited[i]:
-#             count += 1
-#             que.put(i)
-# print(-1)
+for _ in range(edgeNum):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+visited = [False for _ in range(p + 1)]
+count = 0
+
+dfs(s, visited, count)
+print(-1)

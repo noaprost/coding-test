@@ -13,11 +13,8 @@ def dfs(node, visited, cost):
 
 
 p = int(sys.stdin.readline())
-
 s, e = map(int, sys.stdin.readline().split())
-
 edgeNum = int(sys.stdin.readline())
-
 graph = [[] for _ in range(p + 1)]
 
 for _ in range(edgeNum):

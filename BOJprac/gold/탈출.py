@@ -16,7 +16,7 @@ def bfs(ax, by):
         x, y = queue.popleft()
         if graph[ax][by] == "S":
             return dist[ax][by]
-        
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
@@ -32,6 +32,7 @@ def bfs(ax, by):
                 ] == "*":
                     graph[nx][ny] = "*"
                     queue.append((nx, ny))
+
     return "KAKTUS"
 
 

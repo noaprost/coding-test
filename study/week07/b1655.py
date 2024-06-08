@@ -5,67 +5,27 @@
 # 우선순위 큐 -> 맨끝 값을 가져오는게 안됨
 # heap으로 구현
 
-import sys
 import heapq
+import sys
 
-global midNum
+n = int(sys.stdin.readline())
 
-heap1 = []  # 중간값보다 작은 값이 담길 큐
-heap2 = []  # 중간값보다 큰 값이 담길 큐
+leftHeap = []
+rightHeap = []
 
-midNum = 100000
+for i in range(n):
+    num = int(sys.stdin.readline())
 
-num = int(sys.stdin.readline())
+    if len(leftHeap) == len(rightHeap):
+        heapq.heappush(leftHeap, -num)
+    else:
+        heapq.heappush(rightHeap, num)
 
-while num > 1:
-    x = int(sys.stdin.readline())
-    s1 = len(heap1)
-    s2 = len(heap2)
+    if rightHeap and rightHeap[0] < -leftHeap[0]:
+        leftValue = heapq.heappop(leftHeap)
+        rightValue = heapq.heappop(rightHeap)
 
-    # 맨 처음 원소를 넣을 때
-    if s1 == 0 and s2 == 0:
-        midNum = x
-        print(midNum)
-        heapq.heappush(heap1, (-1 * x, x))
-        continue
+        heapq.heappush(leftHeap, -rightValue)
+        heapq.heappush(rightHeap, -leftValue)
 
-    # 힙의 길이가 같을 때
-    if s1 == s2:
-        print("midNum, x : ", midNum, x)
-        if midNum > x:
-            heapq.heappush(heap1, (-1 * x, x))
-            midNum = heap1[0][1]
-            print(midNum)
-        else:
-            heapq.heappush(heap2, x)
-            midNum = heap2[0]
-            print(midNum)
-    elif s1 > s2:
-        if midNum > x:
-            heapq.heappush(heap1, (-1 * x, x))
-        else:
-            heapq.heappush(heap2, x)
-
-        if s1 > s2:
-            heapq.heappush(heap2, heap1[0][1])
-            heapq.heappop(heap1)
-
-        midNum = heap1[0][1]
-        print(midNum)
-
-    elif s1 < s2:
-        if midNum > x:
-            heapq.heappush(heap1, (-1 * x, x))
-        else:
-            heapq.heappush(heap2, x)
-
-        if s1 < s2:
-            heapq.heappush(heap1, heapq.heappop(heap2))
-
-        midNum = heap1[0][1]
-        print(midNum)
-
-    num = num - 1
-
-    print("heap1 : ", heap1)
-    print("heap2 : ", heap2)
+    print(-leftHeap[0])

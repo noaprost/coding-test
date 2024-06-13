@@ -1,4 +1,4 @@
-# 14428
+# 14427
 import sys
 
 sys.setrecursionlimit(10**5)
@@ -55,11 +55,9 @@ seg = [0] * (4 * n)
 init(1, 1, n)
 
 for _ in range(m):
-    c, a, b = map(int, sys.stdin.readline().split())
-    if c == 1:
+    c = sys.stdin.readline().rstrip()
+    if c[0] == "1":
+        _, a, b = map(int, c.split())
         update(1, 1, n, a, b)
-    elif c == 2:
-        if a > b:
-            print(query(1, 1, n, b, a)[1])
-        else:
-            print(query(1, 1, n, a, b)[1])
+    elif c[0] == "2":
+        print(query(1, 1, n, 1, n)[1])

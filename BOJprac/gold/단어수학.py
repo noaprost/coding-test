@@ -3,25 +3,38 @@ import sys
 
 n = int(sys.stdin.readline())
 
-# 알파벳마다 점수를 매기고 높은 값부터 큰 수를 할당해줌
-# 그러면서도 앞에나온 애는 추가 점수를 받아야함
-
-# A의 아스키코드는 65
-
-
-tmp = ""
+words = []
+dic = {}
+s = set()
 
 for _ in range(n):
-    s1 = sys.stdin.readline().rstrip()
-    tmp += s1
-    tmp += "+"
+    word = sys.stdin.readline().rstrip()
+    words.append(word)
+    score = 1
+    for i in range(len(word) - 1, -1, -1):
+        if word[i] in dic:
+            dic[word[i]] += score
+        else:
+            dic[word[i]] = score
+        score *= 10
+        s.add(word[i])
 
-i = 0
-num = 9
-while i < (len(tmp) - n):
-    pass
+array = []
+for item in s:
+    array.append([dic[item], item])
+array.sort(reverse=True)
+max_value = 9
 
+for item in array:
+    dic[item[1]] = max_value
+    max_value -= 1
+sum = 0
 
-s = list(map(int, tmp.split("+")[:n]))
-
-print(sum(s))
+for word in words:
+    tmp = 0
+    for i in range(len(word)):
+        tmp += dic[word[i]]
+        tmp *= 10
+    tmp //= 10
+    sum += tmp
+print(sum)

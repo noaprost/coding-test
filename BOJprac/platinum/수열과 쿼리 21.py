@@ -14,10 +14,10 @@ def init(node, start, end):
     return
 
 
-def update(node, start, end, left, right, val):
+def update(node, start, end, left, right, diff):
     mid = (start + end) // 2
     if left <= start and right >= end:
-        lazy[node] += (end - start + 1) * val
+        lazy[node] += (end - start + 1) * diff
     seg[node] += lazy[node]
 
     if start != end and lazy[node] != 0:
@@ -28,8 +28,8 @@ def update(node, start, end, left, right, val):
     if (left <= start and right >= end) or right < start or end < left:
         return
 
-    update(2 * node, start, mid, left, right, val)
-    update(2 * node + 1, mid + 1, end, left, right, val)
+    update(2 * node, start, mid, left, right, diff)
+    update(2 * node + 1, mid + 1, end, left, right, diff)
     seg[node] = seg[node * 2] + seg[node * 2 + 1]
     return
 

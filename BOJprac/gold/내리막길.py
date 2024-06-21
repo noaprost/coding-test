@@ -1,41 +1,36 @@
 # 1520
 import sys
 
-m, n = map(int, sys.stdin.readline().split())
-
-maps = []
-
-for _ in range(m):
-    maps.append(list(map(int, sys.stdin.readline().split())))
-
-visited = [[False for _ in range(n)] for _ in range(m)]
-
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
-ans = 0
+sys.setrecursionlimit(10**9)
 
 
-def dfs(node, visited):
-    global ans
-    x, y = node[0], node[1]
+def dfs(x, y):
+    if x == n - 1 and y == m - 1:
+        return 1
 
-    if x == m - 1 and y == n - 1:
-        ans += 1
-        return
+    if count[x][y] != -1:
+        return count[x][y]
 
+    count[x][y] = 1
+
+    tmp = 0
     for i in range(4):
         nx, ny = x + dx[i], y + dy[i]
 
-        if (
-            0 <= nx < m
-            and 0 <= ny < n
-            and not visited[nx][ny]
-            and maps[x][y] > maps[nx][ny]
-        ):
-            visited[nx][ny] = True
-            dfs([nx, ny], visited)
-            visited[nx][ny] = False
+        if not (0 <= nx < n and 0 <= ny < m):
+            continue
+
+        if maps[x][y] > maps[nx][ny]:
+            tmp += dfs(nx, ny)
+
+    count[x][y] = tmp
+    return count[x][y]
 
 
-dfs([0, 0], visited)
-print(ans)
+n, m = map(int, sys.stdin.readline().split())
+maps = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+count = [[-1 for _ in range(m)] for _ in range(n)]
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+
+print(dfs(0, 0))

@@ -31,7 +31,7 @@ def sudoku(n):
         exit()
 
     for i in range(1, 10):
-        x, y = blank[n][0], blank[n][1]
+        x, y = blank[n]
 
         if existRow(x, i) and existCol(y, i) and existSquare(x, y, i):
             doku[x][y] = i

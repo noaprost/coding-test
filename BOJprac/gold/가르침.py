@@ -45,35 +45,35 @@ dfs(0, 0)
 print(ans)
 
 # 비트마스킹
-# import sys
-# from itertools import combinations
+import sys
+from itertools import combinations
 
-# n, k = map(int, sys.stdin.readline().split())
+n, k = map(int, sys.stdin.readline().split())
 
-# if k < 5:
-#     exit(print(0))
-# elif k == 26:
-#     exit(print(n))
-
-
-# def wordToBit(word):
-#     bit = 0
-#     for w in word:
-#         bit = bit | (1 << ord(w) - ord("a"))
-#     return bit
+if k < 5:
+    exit(print(0))
+elif k == 26:
+    exit(print(n))
 
 
-# words = [sys.stdin.readline().rstrip() for _ in range(n)]
-# bits = list(map(wordToBit, words))
-# base_bit = wordToBit("antic")
+def wordToBit(word):
+    bit = 0
+    for w in word:
+        bit = bit | (1 << ord(w) - ord("a"))
+    return bit
 
-# words = [1 << i for i in range(26) if not (base_bit & 1 << i)]
-# ans = 0
-# for combination in combinations(words, k - 5):
-#     count = 0
-#     learn_bit = sum(combination) | base_bit
-#     for bit in bits:
-#         if bit & learn_bit == bit:
-#             count += 1
-#     ans = max(ans, count)
-# print(ans)
+
+words = [sys.stdin.readline().rstrip() for _ in range(n)]
+bits = list(map(wordToBit, words))
+base_bit = wordToBit("antic")
+
+words = [1 << i for i in range(26) if not (base_bit & 1 << i)]
+ans = 0
+for combination in combinations(words, k - 5):
+    count = 0
+    learn_bit = sum(combination) | base_bit
+    for bit in bits:
+        if bit & learn_bit == bit:
+            count += 1
+    ans = max(ans, count)
+print(ans)

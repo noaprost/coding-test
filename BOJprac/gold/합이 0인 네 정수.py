@@ -12,41 +12,43 @@ for _ in range(n):
     c_list.append(c)
     d_list.append(d)
 
-AandB = []
+ab = []
 for a in a_list:
     for b in b_list:
-        AandB.append(a + b)
-AandB.sort()
+        ab.append(a + b)
+ab.sort()
 
-CandD = []
+cd = []
 for c in c_list:
     for d in d_list:
-        CandD.append(c + d)
-CandD.sort()
+        cd.append(c + d)
+cd.sort()
 
 ans = 0
-left, right = 0, len(CandD) - 1
+left, right = 0, len(cd) - 1
 sum = 0
 
-while 0 <= right and left < len(AandB):
-    sum = AandB[left] + CandD[right]
+while 0 <= right and left < len(ab):
+    sum = ab[left] + cd[right]
     if sum < 0:
         left += 1
     elif sum > 0:
         right -= 1
     else:
         x = 1
-        for i in range(left + 1, len(AandB)):
-            if AandB[left] == AandB[i]:
+        for i in range(left + 1, len(ab)):
+            if ab[left] == ab[i]:
                 x += 1
             else:
                 break
+
         y = 1
         for i in range(right - 1, -1, -1):
-            if CandD[right] == CandD[i]:
+            if cd[right] == cd[i]:
                 y += 1
             else:
                 break
+            
         ans += x * y
         left += x
         right -= y

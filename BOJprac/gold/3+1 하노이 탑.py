@@ -17,15 +17,15 @@ for i in range(2, 21):
     dp.append(2 ** (i - 2) - 1 + 3 + dp[i - 2])
 print(dp[n])
 
-disk_pos = 0
+pos = 0
 while n >= 2:
-    move(n - 2, disk_pos, 2 - disk_pos)
-    print("ABC"[disk_pos], "B")
-    print("ABC"[disk_pos], "D")
+    move(n - 2, pos, 2 - pos)
+    print("ABC"[pos], "B")
+    print("ABC"[pos], "D")
     print("B", "D")
 
     n -= 2
-    disk_pos = 2 - disk_pos
+    pos = 2 - pos
 
 if n == 1:
-    print("ABC"[disk_pos], "D")
+    print("ABC"[pos], "D")

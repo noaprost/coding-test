@@ -1,46 +1,32 @@
 # 쉬운 최단거리
-
 import sys
-from queue import Queue
+from collections import deque
 
 n, m = map(int, sys.stdin.readline().split())
-
-# n x m map
 maps = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 visited = [[False for _ in range(m)] for _ in range(n)]
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
 
-que = Queue()
+que = deque()
 
 for i in range(n):
     for j in range(m):
         if maps[i][j] == 2:
-            que.put([i, j])
+            que.append((i, j))
             maps[i][j] = 0
 
-while que.qsize() != 0:
-    v = que.get()
-    x = v[0]
-    y = v[1]
+while que:
+    x, y = que.popleft()
     visited[x][y] = True
-    if (x > 0) and not visited[x - 1][y] and maps[x - 1][y] != 0:
-        que.put([x - 1, y])
-        visited[x - 1][y] = True
-        maps[x - 1][y] += maps[x][y]
 
-    if (x < n - 1) and not visited[x + 1][y] and maps[x + 1][y] != 0:
-        que.put([x + 1, y])
-        visited[x + 1][y] = True
-        maps[x + 1][y] += maps[x][y]
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
 
-    if (y > 0) and not visited[x][y - 1] and maps[x][y - 1] != 0:
-        que.put([x, y - 1])
-        visited[x][y - 1] = True
-        maps[x][y - 1] += maps[x][y]
-
-    if (y < m - 1) and not visited[x][y + 1] and maps[x][y + 1] != 0:
-        que.put([x, y + 1])
-        visited[x][y + 1] = True
-        maps[x][y + 1] += maps[x][y]
+        if 0 <= nx < n and 0 <= ny < m and not visited[nx][ny] and maps[nx][ny] != 0:
+            que.append((nx, ny))
+            visited[nx][ny] = True
+            maps[nx][ny] += maps[x][y]
 
 for i in range(n):
     for j in range(m):
@@ -48,6 +34,4 @@ for i in range(n):
             maps[i][j] = -1
 
 for i in range(n):
-    for j in range(m):
-        print(maps[i][j], end=" ")
-    print()
+    print(*maps[i])

@@ -2,13 +2,10 @@
 import sys
 
 day, k = map(int, sys.stdin.readline().split())
-sum = 0
-a = 1
-b = 1
+sum, a, b = 0, 1, 1
 
 while True:
-    a1 = a
-    b1 = b
+    a1, b1 = a, b
     for i in range(2, day):
         sum = a1 + b1
         a1 = b1

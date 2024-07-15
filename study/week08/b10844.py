@@ -1,9 +1,7 @@
 # 쉬운 계단 수
-
 import sys
 
 n = int(sys.stdin.readline())
-
 count = [[0 for _ in range(n)] for _ in range(10)]
 
 for d in range(n):
@@ -16,10 +14,10 @@ for d in range(n):
                 count[i][d] = count[i + 1][d - 1]
             elif i == 9:  # 다음 수는 무조건 8 한개, 9로 끝나는 수의 개수만큼 존재
                 count[i][d] = count[i - 1][d - 1]
-            else:  # 1~8은 +-한 수에 각각 1개씩 생김
+            else:  # 1 ~ 8은 +-한 수에 각각 1개씩 생김
                 count[i][d] = count[i - 1][d - 1] + count[i + 1][d - 1]
 
-sum = 0  # 개수 총합
+sum = 0
 for i in range(10):
     sum = sum + count[i][n - 1]
 

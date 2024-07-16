@@ -20,10 +20,10 @@ def euclid(a, b):
 
 
 # 숫자 입력
-c1 = input()
-n1 = input().split()
-c2 = input()
-n2 = input().split()
+c1 = sys.stdin.readline()
+n1 = sys.stdin.readline().split()
+c2 = sys.stdin.readline()
+n2 = sys.stdin.readline().split()
 
 # 나눠져있는 숫자 곱하기
 a = 1

@@ -1,35 +1,18 @@
 import sys
 
 n = int(sys.stdin.readline())
-
-stick = list(map(int, sys.stdin.readline().split()))
-
-stick.sort()
-
+length = list(map(int, sys.stdin.readline().split()))
 total = 0
 
+for i in range(n):
+    total += length[i]
 
-def cut(idx, len):
-    global total
-    if len == 1:
-        return
-    else:
-        if len % 2 == 0:
-            total += sum(stick[idx : (len // 2) + idx]) * sum(
-                stick[(len // 2 + idx) : (len // 2 + idx) + (len // 2)]
-            )
-            cut(idx, (len // 2))
-            cut((len // 2 + idx), (len // 2))
-        else:
-            total += sum(stick[idx : ((len + 1) // 2) + idx]) * sum(
-                stick[
-                    ((len + 1) // 2 + idx) : ((len - 1) // 2) + ((len + 1) // 2 + idx)
-                ]
-            )
-            cut(idx, ((len + 1) // 2))
-            cut(((len + 1) // 2 + idx), ((len - 1) // 2))
+length.sort()
 
+next = total
+cost = 0
+for i in range(n - 1):
+    next -= length[i]
+    cost += next * length[i]
 
-cut(0, sum(stick))
-
-print(total)
+print(cost)

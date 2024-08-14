@@ -6,3 +6,4 @@ import sys
 n, m, t = map(int, sys.stdin.readline().split())
 q = list(map(int, sys.stdin.readline().split()))
 p = int(sys.stdin.readline())
+

@@ -5,5 +5,10 @@ import sys
 
 n, m, t = map(int, sys.stdin.readline().split())
 q = list(map(int, sys.stdin.readline().split()))
-p = int(sys.stdin.readline())
+p = int(sys.stdin.readline()) - 1
 
+left_knapsack = [0 for _ in range(101)]
+right_knapsack = [0 for _ in range(101)]
+
+for _ in range(1, t+1):
+    

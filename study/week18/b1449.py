@@ -3,24 +3,18 @@ import sys
 import math
 
 n, length = map(int, sys.stdin.readline().split())
-
 leak = list(map(int, sys.stdin.readline().split()))
 leak.sort()
 
-ans = []
+s = leak[0]
+count = 1
 
-for i in range(n):
-    if i == 0:
-        tmp = 1
+for loc in leak[1:]:
+    if loc in range(s, s + length):
+        continue
+
     else:
-        if abs(leak[i - 1] - leak[i]) <= (length - 1):
-            tmp += 1
-        else:
-            ans.append(tmp)
-            tmp = 0
+        s = loc
+        count += 1
 
-ans.append(tmp)
-sum = 0
-for a in ans:
-    sum += math.ceil(a / length)
-print(sum)
+print(count)

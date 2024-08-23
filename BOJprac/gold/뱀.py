@@ -1,115 +1,65 @@
-# 틀린 문제
-
 # 3190
-# import sys
-# from collections import deque
+import sys
+from collections import deque
 
-# n = int(sys.stdin.readline())
-# maps = [[0 for _ in range(n)] for _ in range(n)]
+n = int(sys.stdin.readline())
+maps = [[0 for _ in range(n)] for _ in range(n)]
+apple_num = int(sys.stdin.readline())
+dx = [0, 1, 0, -1]
+dy = [1, 0, -1, 0]
 
-# directions = ["T", "R", "B", "L"]
-# snakeDirec = directions[1]
+# 사과
+for _ in range(apple_num):
+    x, y = map(int, sys.stdin.readline().split())
+    maps[x - 1][y - 1] = 2
 
-# appleLoc = int(sys.stdin.readline())
+l = int(sys.stdin.readline())
+directions = dict()
+x, y = 0, 0
+que = deque()
+que.append((x, y))
+maps[x][y] = 1
+count = 0
+direction = 0
 
-# # 사과의 위치 표시
-# for _ in range(appleLoc):
-#     x, y = map(int, sys.stdin.readline().split())
-#     maps[x - 1][y - 1] = 4
+# 방향
+for _ in range(l):
+    val, rotate = sys.stdin.readline().rstrip().split()
+    directions[int(val)] = rotate
 
-# l = int(sys.stdin.readline())
 
-# d = deque()
-# d.append([0, 0])
-# maps[0][0] = 1
-# i = 1
+def turn(d):
+    global direction
+    if d == "L":
+        direction = (direction - 1) % 4
+    else:
+        direction = (direction + 1) % 4
 
-# command = []
 
-# for _ in range(l):
-#     val, rotate = sys.stdin.readline().split()
-#     command.append([val, rotate])
+while True:
+    count += 1
+    x += dx[direction]
+    y += dy[direction]
 
-# command.append([10001, command[l - 1][1]])
+    if x < 0 or x >= n or y < 0 or y >= n:
+        break
 
-# for c in command:
-#     val, rotate = c[0], c[1]
-#     while i < int(val):
-#         for m in maps:
-#             print(m)
-#         print()
-#         x = d[0][0]
-#         y = d[0][1]
-#         if snakeDirec == "R":
-#             i += 1
-#             if y > n - 1:  # 경계를 벗어날 경우
-#                 exit(print(i))
-#             elif maps[x][y + 1] == 1:  # 자기 몸에 닿은 경우
-#                 exit(print(i))
-#             else:  # 경계에 닿지 않은 경우
-#                 if maps[x][y + 1] == 4:
-#                     d.appendleft([x, y + 1])
-#                     maps[x][y + 1] = 1
-#                 else:
-#                     d.appendleft([x, y + 1])
-#                     maps[x][y + 1] = 1
-#                     v = d.pop()
-#                     maps[v[0]][v[1]] = 0
+    if maps[x][y] == 2:
+        maps[x][y] = 1
+        que.append((x, y))
 
-#         elif snakeDirec == "B":
-#             i += 1
-#             if x + 1 > n - 1:  # 경계를 벗어날 경우
-#                 exit(print(i))
-#             elif maps[x + 1][y] == 1:  # 자기 몸에 닿은 경우
-#                 exit(print(i))
-#             else:  # 경계에 닿지 않은 경우
-#                 if maps[x + 1][y] == 4:
-#                     d.appendleft([x + 1, y])
-#                     maps[x + 1][y] = 1
-#                 else:
-#                     d.appendleft([x + 1, y])
-#                     maps[x + 1][y] = 1
-#                     v = d.pop()
-#                     maps[v[0]][v[1]] = 0
+        if count in directions:
+            turn(directions[count])
 
-#         elif snakeDirec == "L":
-#             i += 1
-#             if y < 0:  # 경계를 벗어날 경우
-#                 exit(print(i))
-#             elif maps[x][y - 1] == 1:  # 자기 몸에 닿은 경우
-#                 exit(print(i))
-#             else:  # 경계에 닿지 않은 경우
-#                 if maps[x][y - 1] == 4:
-#                     d.appendleft([x, y - 1])
-#                     maps[x][y - 1] = 1
-#                 else:
-#                     d.appendleft([x, y - 1])
-#                     maps[x][y - 1] = 1
-#                     v = d.pop()
-#                     maps[v[0]][v[1]] = 0
+    elif maps[x][y] == 0:
+        maps[x][y] = 1
+        que.append((x, y))
+        tx, ty = que.popleft()
+        maps[tx][ty] = 0
 
-#         elif snakeDirec == "T":
-#             i += 1
-#             if x < 0:  # 경계를 벗어날 경우
-#                 exit(print(i))
-#             elif maps[x - 1][y] == 1:  # 자기 몸에 닿은 경우
-#                 exit(print(i))
-#             else:  # 경계에 닿지 않은 경우
-#                 if maps[x - 1][y] == 4:
-#                     d.appendleft([x - 1, y])
-#                     maps[x - 1][y] = 1
-#                 else:
-#                     d.appendleft([x - 1, y])
-#                     maps[x - 1][y] = 1
-#                     v = d.pop()
-#                     maps[v[0]][v[1]] = 0
+        if count in directions:
+            turn(directions[count])
+    else:
+        break
 
-#     if rotate == "D":
-#         snakeDirec = directions[(directions.index(snakeDirec) + 1) % 4]
-#     elif rotate == "L":
-#         didx = directions.index(snakeDirec)
-#         if didx == 0:
-#             snakeDirec = directions[3]
-#         else:
-#             snakeDirec = directions[didx - 1]
-# print(i)
+print(count)

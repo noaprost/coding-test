@@ -1,26 +1,13 @@
-# 메모리 초과
+# 수 정렬하기 3
+import sys
 
-# import sys
+n = int(sys.stdin.readline())
+nums = [0] * (10001)
 
-# n = int(sys.stdin.readline())
-# arr = [int(sys.stdin.readline()) for _ in range(n)]
+for _ in range(n):
+    nums[int(sys.stdin.readline())] += 1
 
-# count_dict = {}
-
-# for num in arr:
-#     if num in count_dict:
-#         count_dict[num] += 1
-
-#     else:
-#         count_dict[num] = 1
-
-# result = []
-
-# for num in range(max(arr) + 1):
-#     while num in count_dict and count_dict[num] != 0:
-#         result.append(num)
-#         count_dict[num] -= 1
-
-
-# for r in result:
-#     print(r)
+for num in range(len(nums)):
+    if nums[num] != 0:
+        for _ in range(nums[num]):
+            print(num)

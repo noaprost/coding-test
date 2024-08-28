@@ -1,29 +1,41 @@
-# 메모리 초과
-
-
 # 3651
-# import sys
-# import copy
+import sys
 
-# m = int(sys.stdin.readline())
 
-# dp = [0, 1] + [0 for _ in range(m)]
-# ans = []
-# cnt = 0
+def nCr(n, r):
+    ret = 1
 
-# for n in range(1, m + 2):
-#     tmp = copy.deepcopy(dp)
-#     for k in range(1, m + 2):
-#         v = tmp[k - 1] + tmp[k]
-#         if k == 1:
-#             dp[k] = 1
-#         elif k != n:
-#             dp[k] = v
-#             if dp[k] == m:
-#                 ans.append([n, k])
-#                 cnt += 1
-#         elif k == n:
-#             dp[k] = 1
-# print(cnt)
-# for a in ans:
-#     print(a[0] - 1, a[1] - 1)
+    for i in range(r):
+        ret *= n - i
+
+    for i in range(r):
+        ret //= r - i
+
+    return ret
+
+
+n = int(sys.stdin.readline())
+ans = []
+
+for r in range(1, 31):
+    low, high = r * 2, n + 1
+
+    while low + 1 < high:
+        mid = (low + high) // 2
+
+        if nCr(mid, r) <= n:
+            low = mid
+        else:
+            high = mid
+
+    if nCr(low, r) == n:
+        ans.append((low, r))
+
+        if r < low - r:
+            ans.append((low, low - r))
+
+ans.sort()
+
+print(len(ans))
+for [a, b] in ans:
+    print("{0} {1}".format(a, b))
